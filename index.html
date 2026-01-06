@@ -110,19 +110,22 @@
   var overall_debrief = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: function() {
-      var current_bonus = getPropRestUsed(bonus_minimum, dependent_bonus); // calculate right here
+      var points_remaining = num_epochs * max_num_rest_trials_per_epoch - num_rest_used;
+      var points_used = num_rest_used;
       return `
         <div class="instructions-container">
           <h1 class="instructions-heading">Thank You!</h1>
           <p class="instructions-text">
-            Thanks for participating! This experiment sought to understand cognitive fatigue and effort. Your final completion bonus is
-            <strong>${current_bonus}</strong> dollars. The experiment is over now, press any button to continue to be redirected.
+            Thanks for participating! This experiment sought to understand cognitive fatigue and effort.
+            You used <strong>${points_used}</strong> points and have <strong>${points_remaining}</strong> points remaining from your endowment.
+            The experiment is over now, press any button to continue to be redirected.
           </p>
         </div>
       `;
     },
     on_finish: function(data) {
-      data.final_bonus = getPropRestUsed(bonus_minimum, dependent_bonus); // Store in data as well
+      data.points_used = num_rest_used;
+      data.points_remaining = num_epochs * max_num_rest_trials_per_epoch - num_rest_used;
     }
   };
   

@@ -2,8 +2,6 @@
 var max_num_rest_trials_per_epoch = 20;
 var rest_num_practice_trials = 4;
 var num_epochs = 30; // Total number of epochs (can be adjusted)
-var bonus_minimum = 0.5
-var dependent_bonus = 2
 
 const rt_instructions_01 = {
   type: jsPsychHtmlKeyboardResponse,
@@ -89,21 +87,6 @@ function rest_task_createTrials(num_rt_trials, follows_epoch_num, type_desc) {
   return trials;
 }
 
-// for calculating the bonus at the end
-// get proportion used, and multiply it by 2 dollars
-// default bonus = how much they get regardless
-// bonus max = 
-// make endownment = max num rest possible so that 1 point = 1 rest trial taken = 1 second of rest
-function getPropRestUsed(default_bonus,bonus_max) {
-  console.log("calculating bonus: num used, num possible")
-  var num_used = num_rest_used
-  console.log(num_used)
-  var num_possible = num_epochs * max_num_rest_trials_per_epoch
-  console.log(num_possible)
-  var final_bonus = bonus_max * (1 - num_used/num_possible) + default_bonus
-  console.log(final_bonus)
-  return final_bonus.toFixed(2)
-}
 
 // Simple transition message (no switch/stay cues since there's only one task)
 var rest_transition = {

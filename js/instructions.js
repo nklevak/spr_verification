@@ -1,10 +1,10 @@
 // INTRO AND BEFORE PRACTICE
-// make a prolific id place for them to enter
+// make a participant id place for them to enter
 var prolific_id_insert = {
   type: jsPsychSurveyText,
   preamble: `<div class="instructions-container">
     <h1 class="instructions-heading">Welcome!</h1>
-    <p class="instructions-text">Please enter your Prolific ID below:</p>
+    <p class="instructions-text">Please enter your participant ID or student ID below:</p>
   </div>`,
   questions: [
     {prompt: 'Enter here:', rows: 1, name: 'prolific_id'},
@@ -24,8 +24,7 @@ var welcome_practice_instructions = {
     `<div class="instructions-container">
       <p class="instructions-text">In this experiment, you will be playing a <b>spatial recall game</b>. <br>\
       You will also be given rest breaks, during which you will do the <b>Rest Game</b>.</p>
-      <p class="instructions-text">You will be paid 12 dollars per hour, plus a bonus of up to 2.50 dollars, and \
-      regardless of your choices during this experiment, it will be approximately 56 minutes. </p>
+      <p class="instructions-text">Regardless of your choices during this experiment, it will be approximately 56 minutes. </p>
       <p class="instructions-text">Before we begin, let's do some practice of the game.</p>
     </div>`
   ],
@@ -120,15 +119,13 @@ var main_exp_instructions = {
       You should stay in the rest game for as long as you need or want, but be aware that staying longer will be costly.</p>
     </div>`,
     `<div class="instructions-container">
-      <h1 class="instructions-heading">The point system and bonus</h1>
+      <h1 class="instructions-heading">The Point System</h1>
   
-      <p class="instructions-test">Please try your best on the spatial recall game; as long as it is clear you tried on every trial, you will get a base bonus of at least 0.50 dollars.</p>
-      <p class="instructions-text">You can gain an extra bonus of 2 additional dollars (bringing the total up to 2.50). \
-      To do so: you will get an endowment of <b>600 points</b> to begin with, which you can use as currency in this experiment.<br>\
+      <p class="instructions-text">Please try your best on the spatial recall game.</p>
+      <p class="instructions-text">You will get an endowment of <b>600 points</b> to begin with, which you can use as currency in this experiment.<br>\
       These points are valuable, and <b>they represent your ability to rest for longer during the experiment.</b><br>\
-      During the rest game, <b>every rest trial you use will use 1 point from your endowment</b> and at the end of the game, \
-      <b>the proportion remaining of your endowment will be converted to the extra 2 dollar bonus.</b><br> \
-      However, <strong>do not worry too much about holding onto every single point; they are meant to be used to make your experience more enjoyable.</strong></p>
+      During the rest game, <b>every rest trial you use will use 1 point from your endowment</b>.<br> \
+      <strong>Do not worry too much about holding onto every single point; they are meant to be used to make your experience more enjoyable.</strong></p>
     </div>`,
     `<div class="instructions-container">
       <h1 class="instructions-heading">Important Notes</h1>
