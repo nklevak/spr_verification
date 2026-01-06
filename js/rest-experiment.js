@@ -1,7 +1,7 @@
 // MAIN EXPERIMENT SET UP VARIABLES
 var max_num_rest_trials_per_epoch = 20;
 var rest_num_practice_trials = 4;
-var num_epochs = 3; // Total number of epochs (can be adjusted) - TEMPORARILY SET TO 3 FOR TESTING, originally 30
+var num_epochs = 30; // Total number of epochs (can be adjusted)
 
 const rt_instructions_01 = {
   type: jsPsychHtmlKeyboardResponse,
