@@ -4,6 +4,10 @@ var rest_num_practice_trials = 4;
 // var num_epochs = 30; // Total number of epochs (can be adjusted)
 var num_epochs = 24; // Total number of epochs (adjusted from original 30 to be slightly shorter; equivalent to 8 blocks instead of 10)
 
+// Bonus variables
+var bonus_minimum = 0.5;
+var dependent_bonus = 2;
+
 const rt_instructions_01 = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: `
@@ -13,7 +17,7 @@ const rt_instructions_01 = {
       <div><img src="./img/Circle.png" style="width: 50px;"><br>1</div>
       <div><img src="./img/Square.png" style="width: 50px;"><br>2</div>
     </div>
-    <p>Press the corresponding <strong>number key (1 or 2) on your keyboard</strong> when asked about a specific shape.</p>
+    <p>Press the corresponding <strong>number key (1 or 2) on your keyboard</strong> when asked about a specific shape. <strong>Please use your keyboard to respond, not your mouse.</strong></p>
     <p>You can end the rest at any time by clicking the "End Rest" button.</p>
     <p>Press any key to begin.</p>
   `,
@@ -26,6 +30,13 @@ var num_rest_used = 0
 
 function getNumRestUsed() {
   return num_rest_used
+}
+
+function getPropRestUsed(default_bonus, bonus_max) {
+  var num_used = num_rest_used;
+  var num_possible = num_epochs * max_num_rest_trials_per_epoch;
+  var final_bonus = bonus_max * (1 - num_used / num_possible) + default_bonus;
+  return final_bonus.toFixed(2);
 }
 
 function shouldTrialRun() {
@@ -111,7 +122,7 @@ var rest_transition = {
 var rest_to_game_transition= {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: `<div class="instructions-container">
-    <p class="instructions-text">You are done with rest! <br>You will now return to the spatial recall task.</p>
+    <p class="instructions-text">You are done with rest! <br>You will now return to the Square Game.</p>
   </div>`,
   choices: "NO_KEYS",
   trial_duration: 1500,
@@ -179,7 +190,7 @@ function practice_rest_task_createTrials(num_rt_trials) {
             } else {
                 return `
                   <div class="flex flex-col items-center justify-center">
-                      <p>Incorrect, please click the number corresponding to the shape in bold.</p>
+                      <p>Incorrect, please press the number key (1 or 2) on your keyboard corresponding to the shape in bold.</p>
                   </div>
                 `;
             }
