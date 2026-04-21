@@ -107,7 +107,7 @@ var rest_transition = {
     <div class="instructions-container" style="text-align: center;">
       <h2 style="font-size: 22px; margin-bottom: 20px;">Rest Period</h2><br><br>
       <p class="instructions-text" style="font-size: 24px;">
-        You will now have a rest period. Take as much time as you need.
+        You are now in a rest period. Take as long as you need and press End Rest when you are ready to return to the main experiment.
       </p>
     </div>`,
   choices: "NO_KEYS",

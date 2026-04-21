@@ -1,8 +1,72 @@
+var dataAlreadySubmitted = false;
+
+function emergencySubmit() {
+  if (dataAlreadySubmitted) return;
+  dataAlreadySubmitted = true;
+
+  var dataToSubmit;
+  try {
+    dataToSubmit = jsPsych.data.get().values();
+  } catch(e) {
+    console.warn('Could not retrieve jsPsych data for emergency submit.');
+    return;
+  }
+
+  if (!dataToSubmit || dataToSubmit.length === 0) return;
+
+  try {
+    localStorage.setItem('experiment_data_backup', JSON.stringify(dataToSubmit));
+  } catch(e) {}
+
+  proliferate.submit(
+    {data: dataToSubmit},
+    function() {
+      try { localStorage.removeItem('experiment_data_backup'); } catch(e) {}
+      console.log('Emergency data submitted successfully.');
+      window.location.href = 'https://app.prolific.com/submissions/complete?cc=C1OF1QFO';
+    },
+    function() {
+      console.warn('Emergency submit failed. Data saved to localStorage.');
+      document.body.innerHTML =
+        '<div style="text-align:center; margin-top:15%; font-family:Arial,sans-serif;">' +
+          '<h2>You exited the experiment early</h2>' +
+          '<p>We are trying to save your data. Please do not close this tab.</p>' +
+          '<button id="emergency-retry-btn" style="padding:12px 24px; font-size:16px; cursor:pointer;">Retry Submission</button>' +
+        '</div>';
+      document.getElementById('emergency-retry-btn').addEventListener('click', function() {
+        this.disabled = true;
+        this.textContent = 'Submitting...';
+        dataAlreadySubmitted = false;
+        emergencySubmit();
+      });
+    }
+  );
+}
+
+document.addEventListener('fullscreenchange', function() {
+  if (!document.fullscreenElement && !dataAlreadySubmitted && !window._experimentEndingNormally) {
+    console.log('Fullscreen exited early, attempting emergency submit.');
+    emergencySubmit();
+  }
+});
+
+window.addEventListener('beforeunload', function(e) {
+  if (!dataAlreadySubmitted) {
+    try {
+      var dataToSubmit = jsPsych.data.get().values();
+      localStorage.setItem('experiment_data_backup', JSON.stringify(dataToSubmit));
+    } catch(err) {}
+  }
+});
+
 // Initialize jsPsych.
 var jsPsych = initJsPsych({
   show_progress_bar: false,
   auto_update_progress_bar: false,
   on_finish: function(){
+    if (dataAlreadySubmitted) return;
+    dataAlreadySubmitted = true;
+
     // Add interactions to the data variable
     var interaction_data = jsPsych.data.getInteractionData();
     jsPsych.data.get().addToLast({interactions: interaction_data.json()});

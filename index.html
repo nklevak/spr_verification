@@ -94,11 +94,7 @@
   // Build the main experiment timeline: epoch 1, rest, epoch 2, rest, ..., epoch N
   for (var epoch_num = 1; epoch_num <= num_epochs; epoch_num++) {
     timeline.push(sr_epoch_trials);
-    
-    // Add rest block after each epoch (except after the last one)
-    if (epoch_num < num_epochs) {
-      timeline.push(createSelfPacedRestTimeline(epoch_num, "epoch_rest"));
-    }
+    timeline.push(createSelfPacedRestTimeline(epoch_num, "epoch_rest"));
   }
     
   var overall_debrief = {

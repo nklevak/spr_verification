@@ -166,6 +166,9 @@ var submitting_message = {
 var exitFullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: false,
+  on_start: function() {
+    window._experimentEndingNormally = true;
+  }
 };
 
 // cue that task will stay
