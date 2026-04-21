@@ -1,6 +1,8 @@
 // MAIN EXPERIMENT SET UP VARIABLES
 var sr_trials_per_epoch = 10
-var sr_practice_trial_num = 4 
+var sr_practice_trial_num = 4
+var current_sr_epoch = 0
+var epochs_per_block = 3
 
 
 // SR specific set up variables:
@@ -94,6 +96,8 @@ function sr_getBlock() {
         data.practice = "false"
         data.game_type = "spatial_recall"
         data.trial_type = "sr_main_response"
+        data.epoch_num = current_sr_epoch
+        data.block_num = Math.floor((current_sr_epoch - 1) / epochs_per_block) + 1
       }
     }
 

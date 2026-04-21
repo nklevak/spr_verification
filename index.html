@@ -88,7 +88,10 @@
   // MAIN EXPERIMENT: Create epochs with rest blocks between them
   // Each epoch is: spatial recall epoch, then rest block
   var sr_epoch_trials = {
-    timeline: sr_getBlock()
+    timeline: sr_getBlock(),
+    on_timeline_start: function() {
+      current_sr_epoch++;
+    }
   }
   
   // Build the main experiment timeline: epoch 1, rest, epoch 2, rest, ..., epoch N
