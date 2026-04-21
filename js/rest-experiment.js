@@ -2,7 +2,7 @@
 var max_num_rest_trials_per_epoch = 20;
 var rest_num_practice_trials = 4;
 // var num_epochs = 30; // Total number of epochs (can be adjusted)
-var num_epochs = 24; // Total number of epochs (adjusted from original 30 to be slightly shorter; equivalent to 8 blocks instead of 10)
+var num_epochs = 6; // TEMPORARY: 2 blocks for testing (change back to 24 for real experiment)
 
 // Bonus variables
 var bonus_minimum = 0.5;
