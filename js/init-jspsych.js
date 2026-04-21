@@ -23,7 +23,13 @@ function emergencySubmit() {
     function() {
       try { localStorage.removeItem('experiment_data_backup'); } catch(e) {}
       console.log('Emergency data submitted successfully.');
-      window.location.href = 'https://app.prolific.com/submissions/complete?cc=C1OF1QFO';
+      document.body.innerHTML =
+        '<div style="text-align:center; margin-top:15%; font-family:Arial,sans-serif;">' +
+          '<h2>You exited the experiment early</h2>' +
+          '<p>Your data has been saved, but because you did not complete the full experiment, ' +
+          'you will not receive a completion code.</p>' +
+          '<p>If you believe this was an error, please message the researcher.</p>' +
+        '</div>';
     },
     function() {
       console.warn('Emergency submit failed. Data saved to localStorage.');

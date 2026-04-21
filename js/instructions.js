@@ -135,7 +135,7 @@ var main_exp_instructions = {
     </div>`,
     `<div class="instructions-container">
       <h1 class="instructions-heading">Important Notes</h1>
-      <p class="instructions-text">The total duration of the experiment is approximately 50 minutes (no matter how much time is spent on the Rest Game vs the Square Game), so please \
+      <p class="instructions-text">The total duration of the experiment is approximately 50 minutes (no matter how much time is spent on the Rest Game), so please \
       feel free to extend rest whenever you feel you need to--taking into consideration that it will take away points from your endowment.</p>
       <p class="instructions-text">Please stay in fullscreen the entire time, or the experiment will break and you will have to start over.</p>
       <p class="instructions-text">At the end, it will redirect you to Prolific. It might take a few seconds for it to send the data, \
@@ -176,6 +176,6 @@ var rest_leftovers_transition = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: '<p> You have completed the main experiment! Now you will do the leftover rest trials that you skipped earlier. </p>',
   choices: "ALL_KEYS",
-  trial_duration: 2000,
+  trial_duration: 5000,
 }
 
