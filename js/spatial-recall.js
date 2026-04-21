@@ -53,13 +53,18 @@ var sr_recall_forwards_practice = {
     },
     {
       type: jsPsychHtmlKeyboardResponse,
-      trial_duration: 1000,
+      trial_duration: function(){
+        var last_trial = jsPsych.data.get().last(1).values()[0];
+        return last_trial.timed_out ? 2000 : 1000;
+      },
       stimulus: function(){
-        var last_trial_correct = jsPsych.data.get().last(1).values()[0].score_an;
-        if(last_trial_correct){
-          return "<p>Correct!</p>"; // the parameter value has to be returned from the function
+        var last_trial = jsPsych.data.get().last(1).values()[0];
+        if(last_trial.timed_out){
+          return "<p>You ran out of time! Remember to click <b>Submit</b> after selecting your tiles.</p>";
+        } else if(last_trial.score_an){
+          return "<p>Correct!</p>";
         } else {
-          return "<p>Incorrect! Please try to focus on the order in which the squares appear.</p>"; // the parameter value has to be returned from the function
+          return "<p>Incorrect! Please try to focus on the order in which the squares appear.</p>";
         }
       },
       choices: 'NO_KEYS',

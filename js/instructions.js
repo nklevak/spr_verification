@@ -43,7 +43,8 @@ SR_practice = [
     <h1 class="instructions-heading">Square Game</h1>
     <p class="instructions-text">In this game you will see a grid of squares that will flash blue one at a time.\
     Your goal is to remember the order in which the squares flashed blue. \
-    At the end of each trial, press the tiles that flashed in the <b>same order</b> as they were presented to you.</p>
+    At the end of each trial, press the tiles that flashed in the <b>same order</b> as they were presented to you, \
+    then click the <b>"Submit"</b> button to confirm your answer.</p>
   </div>`,
   `<div class="instructions-container">
     <p class="instructions-text">Do your best to memorize the order, but do not write them down or use any other \
